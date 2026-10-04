@@ -1,0 +1,452 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f8f9fb">
+    <meta name="description" content="WinSpot 是为 Windows 11 设计的本地应用启动器。分类浏览、拼音搜索、快捷键唤起，让应用和文件触手可及。无需账号，数据留在本机。">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="WinSpot · 你的桌面，触手可及">
+    <meta property="og:description" content="一个更顺手的 Windows 应用启动器。为日常留白，为专注让路。">
+    <meta property="og:image" content="./assets/winspot.png">
+    <title>WinSpot · 你的桌面，触手可及</title>
+    <link rel="icon" type="image/png" href="./assets/winspot.png">
+    <link rel="stylesheet" href="./styles.css">
+    <script src="./assets/icons.js" defer></script>
+    <script src="./script.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">跳到正文</a>
+    <header class="site-header">
+      <div class="nav-shell">
+        <a class="brand" href="#top" aria-label="WinSpot 首页">
+          <img src="./assets/winspot.png" width="34" height="34" alt="">
+          <span>WinSpot</span>
+        </a>
+        <nav class="desktop-nav" aria-label="主导航">
+          <a href="#features">功能</a>
+          <a href="#appearance">外观</a>
+          <a href="#privacy">隐私</a>
+          <a href="#faq">常见问题</a>
+        </nav>
+        <div class="nav-actions">
+          <a class="github-link" href="https://github.com/Mystic-Stars/WinSpot" target="_blank" rel="noopener noreferrer" aria-label="在 GitHub 查看 WinSpot 源码（新窗口）" title="GitHub 源码">
+            <span data-icon="github" aria-hidden="true"></span>
+          </a>
+          <a class="button button-small button-dark" href="#get">获取 WinSpot <span data-icon="arrow-up-right" aria-hidden="true"></span></a>
+          <button class="icon-button menu-toggle" type="button" aria-label="打开导航菜单" aria-expanded="false" aria-controls="mobile-nav" title="导航菜单" hidden>
+            <span data-icon="menu" aria-hidden="true"></span>
+          </button>
+        </div>
+      </div>
+      <nav class="mobile-nav" id="mobile-nav" aria-label="移动端导航" hidden>
+        <a href="#features">功能</a><a href="#appearance">外观</a>
+        <a href="#privacy">隐私</a><a href="#faq">常见问题</a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section class="hero" id="top" aria-labelledby="hero-title">
+        <img class="hero-wallpaper" src="./assets/mountains.jpg" width="2400" height="1590" alt="" fetchpriority="high">
+        <div class="hero-content">
+          <div class="hero-copy">
+            <p class="hero-eyebrow"><span class="windows-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span> 为 Windows 11 而生</p>
+            <h1 id="hero-title">WinSpot<span class="brand-period">.</span></h1>
+            <p class="hero-tagline">你的桌面，触手可及。</p>
+            <p class="hero-description">应用、文件、下一件想做的事。<br class="mobile-break">一个入口，刚刚好。</p>
+            <div class="hero-actions">
+              <a class="button button-dark" href="#get"><span data-icon="download" aria-hidden="true"></span> 获取 WinSpot</a>
+              <a class="text-link" href="#features">看看它能做什么 <span data-icon="arrow-down" aria-hidden="true"></span></a>
+            </div>
+          </div>
+
+          <div class="product-scene">
+            <div class="launcher-stage" id="launcher-demo" data-mode="library" data-demo-theme="light" aria-label="WinSpot 启动器展示">
+              <span id="library-search-measure" class="library-search-measure" aria-hidden="true"></span>
+              <div class="spotlight-bar-shell">
+                <div class="winspot-morph-card native-surface is-library" id="winspot-morph-card">
+                  <!-- 1. 程序库头部 Library Header -->
+                  <header class="library-header" id="library-header">
+                    <div class="library-header-left">
+                      <button class="library-back-button" type="button" id="library-back-btn" aria-label="返回聚焦搜索" title="返回聚焦搜索">
+                        <span class="library-back-default"><span data-icon="win11" class="library-brand-icon"></span></span>
+                        <span class="library-back-hover"><span data-icon="arrow-left"></span></span>
+                      </button>
+                      <div class="library-search-area" id="library-search-area">
+                        <label class="sr-only" for="library-search-input">搜索应用程序</label>
+                        <input id="library-search-input" class="library-search-input" type="search" placeholder="" autocomplete="off" spellcheck="false" maxlength="100" style="width: 0px;">
+                        <span class="library-match-pill" id="library-match-pill" aria-hidden="true">VS Code - 打开</span>
+                      </div>
+                    </div>
+                    <div class="library-header-right">
+                      <div class="library-matched-app-icon" id="library-matched-icon" role="button" tabindex="0" title="打开选中应用" aria-label="打开选中应用">
+                        <span class="app-icon-wrapper" style="width: 24px; height: 24px;">
+                          <img id="matched-icon-img" src="./assets/vscode.svg" width="24" height="24" alt="">
+                        </span>
+                      </div>
+                      <button class="library-more-btn" type="button" id="library-more-btn" aria-label="更多操作" title="更多操作">
+                        <span data-icon="ellipsis" aria-hidden="true"></span>
+                      </button>
+                    </div>
+                  </header>
+
+                  <!-- 2. 聚焦搜索头部 Spotlight Header -->
+                  <header class="spotlight-capsule-header" id="spotlight-header" hidden>
+                    <span class="spotlight-capsule-icon" aria-hidden="true">
+                      <span data-icon="search"></span>
+                    </span>
+                    <label class="sr-only" for="spotlight-search-input">聚焦搜索</label>
+                    <input id="spotlight-search-input" class="spotlight-capsule-input" type="search" placeholder="聚焦搜索" autocomplete="off" spellcheck="false" maxlength="100">
+                    <button class="capsule-clear-btn" type="button" id="spotlight-clear-btn" aria-label="清除" title="清除" hidden>
+                      <span data-icon="x" aria-hidden="true"></span>
+                    </button>
+                    <div class="spotlight-header-scopes" id="spotlight-header-scopes" hidden>
+                      <button class="scope-circle" type="button" data-scope="library" title="应用库" aria-label="应用库">
+                        <span data-icon="win11" aria-hidden="true"></span>
+                      </button>
+                      <button class="scope-circle" type="button" data-scope="files" title="文件搜索" aria-label="文件搜索">
+                        <span data-icon="folder-open" aria-hidden="true"></span>
+                      </button>
+                    </div>
+                    <div class="spotlight-capsule-hover-trigger" id="spotlight-hover-trigger" title="悬浮展开分类"></div>
+                  </header>
+
+                  <!-- 卡片内部主体 Morph Card Body -->
+                  <div class="morph-card-body" id="morph-card-body">
+                    <!-- 3. 应用库内容视图 -->
+                    <div class="library-content-view" id="library-content-view">
+                      <nav class="library-tabs-bar" role="tablist" aria-label="应用分类">
+                        <button type="button" role="tab" class="library-tab-pill active" data-category="all" aria-selected="true">全部</button>
+                        <button type="button" role="tab" class="library-tab-pill" data-category="social" aria-selected="false">社交</button>
+                        <button type="button" role="tab" class="library-tab-pill" data-category="dev" aria-selected="false">开发者工具</button>
+                        <button type="button" role="tab" class="library-tab-pill" data-category="tools" aria-selected="false">工具</button>
+                        <button type="button" role="tab" class="library-tab-pill" data-category="work" aria-selected="false">效率与财务</button>
+                        <button type="button" role="tab" class="library-tab-pill" data-category="fun" aria-selected="false">娱乐</button>
+                        <button type="button" role="tab" class="library-tab-pill" data-category="creative" aria-selected="false">创意</button>
+                      </nav>
+
+                      <div class="library-scroll-body" id="library-scroll-body">
+                        <!-- 推荐应用行 (前 7 个常用应用) -->
+                        <section class="library-recommended-row" id="library-recommended-row" aria-label="推荐应用">
+                          <div class="app-cell" role="listitem">
+                            <button class="app-tile selected" type="button" data-app="vscode" title="VS Code">
+                              <span class="tile-icon">
+                                <span class="app-icon-wrapper"><img src="./assets/vscode.svg" width="56" height="56" alt=""></span>
+                                <span class="pin-badge" title="已固定"><span data-icon="pin" aria-hidden="true"></span></span>
+                              </span>
+                              <span class="app-name">VS Code</span>
+                            </button>
+                          </div>
+                          <div class="app-cell" role="listitem">
+                            <button class="app-tile" type="button" data-app="wechat" title="微信">
+                              <span class="tile-icon">
+                                <span class="app-icon-wrapper"><img src="./assets/wechat.svg" width="56" height="56" alt=""></span>
+                                <span class="pin-badge" title="已固定"><span data-icon="pin" aria-hidden="true"></span></span>
+                              </span>
+                              <span class="app-name">微信</span>
+                            </button>
+                          </div>
+                          <div class="app-cell" role="listitem">
+                            <button class="app-tile" type="button" data-app="figma" title="Figma">
+                              <span class="tile-icon"><span class="app-icon-wrapper"><img src="./assets/figma.svg" width="56" height="56" alt=""></span></span>
+                              <span class="app-name">Figma</span>
+                            </button>
+                          </div>
+                          <div class="app-cell" role="listitem">
+                            <button class="app-tile" type="button" data-app="chrome" title="Chrome">
+                              <span class="tile-icon"><span class="app-icon-wrapper"><img src="./assets/chrome.svg" width="56" height="56" alt=""></span></span>
+                              <span class="app-name">Chrome</span>
+                            </button>
+                          </div>
+                          <div class="app-cell" role="listitem">
+                            <button class="app-tile" type="button" data-app="notion" title="Notion">
+                              <span class="tile-icon"><span class="app-icon-wrapper"><img src="./assets/notion.svg" width="56" height="56" alt=""></span></span>
+                              <span class="app-name">Notion</span>
+                            </button>
+                          </div>
+                          <div class="app-cell" role="listitem">
+                            <button class="app-tile" type="button" data-app="spotify" title="Spotify">
+                              <span class="tile-icon"><span class="app-icon-wrapper"><img src="./assets/spotify.svg" width="56" height="56" alt=""></span></span>
+                              <span class="app-name">Spotify</span>
+                            </button>
+                          </div>
+                          <div class="app-cell" role="listitem">
+                            <button class="app-tile" type="button" data-app="blender" title="Blender">
+                              <span class="tile-icon"><span class="app-icon-wrapper"><img src="./assets/blender.svg" width="56" height="56" alt=""></span></span>
+                              <span class="app-name">Blender</span>
+                            </button>
+                          </div>
+                        </section>
+                        <div class="library-divider" aria-hidden="true"></div>
+                        <!-- 全部应用网格 -->
+                        <div class="library-main-grid" id="library-main-grid" role="list" aria-label="全部应用">
+                          <!-- 由脚本或完整列表生成 -->
+                        </div>
+                        <div class="demo-empty" id="library-empty" hidden>
+                          <span data-icon="search" aria-hidden="true"></span>
+                          <p>未找到匹配应用</p>
+                          <button class="text-link reset-demo" type="button">清空搜索</button>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- 4. 聚焦搜索展开内容 -->
+                    <div class="spotlight-card-body" id="spotlight-card-body" hidden>
+                      <section class="spotlight-results-pane" aria-label="搜索结果">
+                        <div class="spotlight-results-header">
+                          <span>全部结果</span>
+                          <span class="spotlight-count-label" id="spotlight-count-label">15 个结果</span>
+                        </div>
+                        <div class="spotlight-list-scroll" id="spotlight-list-scroll" role="listbox">
+                          <!-- 搜索列表项 -->
+                        </div>
+                        <div class="demo-empty" id="spotlight-empty-state" hidden>
+                          <span data-icon="search" aria-hidden="true"></span>
+                          <p>未找到匹配结果</p>
+                        </div>
+                      </section>
+
+                      <aside class="spotlight-inspector-pane" aria-label="应用详情">
+                        <div class="inspector-icon">
+                          <img id="inspector-icon-img" src="./assets/vscode.svg" width="60" height="60" alt="">
+                        </div>
+                        <h3 class="inspector-title" id="inspector-title">VS Code</h3>
+                        <div class="inspector-meta" id="inspector-meta">
+                          <span id="inspector-meta-cat">开发者工具</span>
+                          <span>·</span>
+                          <span id="inspector-meta-type">桌面程序</span>
+                        </div>
+                        <div class="inspector-path" id="inspector-path">C:\Users\AppData\Local\Programs\Microsoft VS Code\Code.exe</div>
+                        <div class="inspector-actions">
+                          <button class="launcher-button primary" type="button" id="inspector-launch-btn">
+                            <span data-icon="arrow-up-right" aria-hidden="true"></span> 打开应用
+                          </button>
+                          <button class="launcher-button secondary" type="button" id="inspector-edit-btn">
+                            <span data-icon="sliders-horizontal" aria-hidden="true"></span> 整理设置
+                          </button>
+                        </div>
+                      </aside>
+                    </div>
+
+                    <!-- 聚焦搜索底部快捷键提示 -->
+                    <footer class="spotlight-card-footer" id="spotlight-card-footer" hidden>
+                      <div class="spotlight-footer-left">
+                        <img src="./assets/winspot.png" width="16" height="16" alt="" class="brand-mark">
+                        <span>WinSpot</span>
+                      </div>
+                      <div class="kbd-hints">
+                        <span><kbd>↑↓</kbd>选择</span>
+                        <span><kbd>↵</kbd>打开</span>
+                        <span class="hint-tab-library" id="hint-tab-library" role="button" tabindex="0" title="点击切换至应用库"><kbd>Tab</kbd>应用库</span>
+                        <span><kbd>Esc</kbd>关闭</span>
+                      </div>
+                    </footer>
+                  </div>
+                </div>
+
+                <!-- 胶囊搜索栏右侧独立悬浮毛玻璃圆形按钮 -->
+                <div class="spotlight-standalone-scopes" id="spotlight-standalone-scopes">
+                  <button type="button" class="scope-standalone-circle native-surface" id="scope-btn-apps" aria-label="应用库" title="应用库">
+                    <span data-icon="win11" aria-hidden="true"></span>
+                  </button>
+                  <button type="button" class="scope-standalone-circle native-surface" id="scope-btn-files" aria-label="文件搜索" title="文件搜索">
+                    <span data-icon="folder-open" aria-hidden="true"></span>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="scene-controls">
+              <div class="view-switch" role="group" aria-label="展示视图">
+                <span class="view-indicator" aria-hidden="true"></span>
+                <button type="button" class="is-active" data-mode="library" aria-pressed="true"><span data-icon="grid-2x2" aria-hidden="true"></span> 应用库</button>
+                <button type="button" data-mode="search" aria-pressed="false"><span data-icon="search" aria-hidden="true"></span> 聚焦搜索</button>
+              </div>
+              <span class="scene-caption"><span class="tiny-dot" aria-hidden="true"></span> 少一点打扰，多一点专注</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="principles-band" aria-label="产品特点">
+        <div class="content-shell principles">
+          <span><span data-icon="command" aria-hidden="true"></span> 键盘优先</span>
+          <span><span data-icon="grid-2x2" aria-hidden="true"></span> 自动整理</span>
+          <span><span data-icon="hard-drive" aria-hidden="true"></span> 完全本地</span>
+          <span><span data-icon="shield-check" aria-hidden="true"></span> 无需账号</span>
+        </div>
+      </div>
+
+      <section class="features-section section-space" id="features" aria-labelledby="features-title">
+        <div class="content-shell">
+          <div class="section-intro">
+            <p class="section-kicker">顺手，应该是默认选项。</p>
+            <h2 id="features-title">少找一点，<br>多做一点。</h2>
+          </div>
+          <div class="search-feature">
+            <div class="feature-copy">
+              <span class="chapter-number" aria-hidden="true">01</span>
+              <h3>想到，就找到。</h3>
+              <p>中文、英文、拼音，或只是几个首字母。<br>用你习惯的方式，找到想打开的应用。</p>
+              <div class="search-language-switch" role="group" aria-label="搜索方式">
+                <button type="button" data-example="微信" aria-pressed="false">中文</button>
+                <button type="button" data-example="weixin" aria-pressed="false">拼音</button>
+                <button type="button" data-example="wx" class="is-active" aria-pressed="true">首字母</button>
+              </div>
+              <p class="feature-footnote">别名与模糊匹配，也在这里。</p>
+            </div>
+            <div class="spotlight-demo" aria-label="应用与文件搜索展示">
+              <div class="spotlight-input">
+                <span data-icon="search" aria-hidden="true"></span>
+                <label class="sr-only" for="spotlight-query">搜索应用与文件展示</label>
+                <input id="spotlight-query" type="search" value="wx" autocomplete="off" spellcheck="false" maxlength="100" aria-controls="spotlight-results">
+                <span class="spotlight-match">微信</span>
+              </div>
+              <div id="spotlight-results" class="spotlight-results" role="group" aria-label="搜索结果">
+                <button class="result-row is-selected" type="button" data-search="微信 weixin wx wechat" data-result-name="微信" aria-pressed="true">
+                  <img src="./assets/wechat.svg" width="36" height="36" alt=""><span class="result-copy"><strong>微信</strong><span>应用 · 社交</span></span><span data-icon="chevron-right" aria-hidden="true"></span>
+                </button>
+                <button class="result-row" type="button" data-search="微信文件 weixin wenjian wx files 文档 wd documents" data-result-name="微信文件" aria-pressed="false">
+                  <img src="./assets/folder.svg" width="36" height="36" alt=""><span class="result-copy"><strong>微信文件</strong><span>文件夹 · 文档</span></span><span data-icon="folder-open" aria-hidden="true"></span>
+                </button>
+                <button class="result-row" type="button" data-search="visual studio code vscode vs code 编辑器" data-result-name="Visual Studio Code" aria-pressed="false" hidden>
+                  <img src="./assets/vscode.svg" width="36" height="36" alt=""><span class="result-copy"><strong>Visual Studio Code</strong><span>应用 · 开发工具</span></span><span data-icon="chevron-right" aria-hidden="true"></span>
+                </button>
+                <button class="result-row" type="button" data-search="figma 设计 sheji sj" data-result-name="Figma" aria-pressed="false" hidden>
+                  <img src="./assets/figma.svg" width="36" height="36" alt=""><span class="result-copy"><strong>Figma</strong><span>应用 · 创意</span></span><span data-icon="chevron-right" aria-hidden="true"></span>
+                </button>
+                <button class="result-row" type="button" data-search="项目计划 文档 xiangmu jihua xm jh 计划 word 文档 wd" data-result-name="项目计划.docx" aria-pressed="false" hidden>
+                  <img src="./assets/word.svg" width="36" height="36" alt=""><span class="result-copy"><strong>项目计划.docx</strong><span>文档 · 项目</span></span><span data-icon="chevron-right" aria-hidden="true"></span>
+                </button>
+              </div>
+              <p class="spotlight-empty" hidden>没有匹配的应用或文件</p>
+              <div class="spotlight-footer"><span><span class="tiny-dot" aria-hidden="true"></span> 应用与文件</span><span class="spotlight-count" aria-live="polite">2 个结果</span></div>
+            </div>
+          </div>
+          <div class="library-feature">
+            <div class="collection-visual" aria-label="按分类整理的应用">
+              <div class="collection-column">
+                <span class="collection-heading">创意</span>
+                <img src="./assets/figma.svg" width="54" height="54" alt="Figma" loading="lazy">
+                <img src="./assets/blender.svg" width="54" height="54" alt="Blender" loading="lazy">
+                <img src="./assets/photoshop.svg" width="54" height="54" alt="Photoshop" loading="lazy">
+              </div>
+              <div class="collection-column">
+                <span class="collection-heading">效率</span>
+                <img src="./assets/notion.svg" width="54" height="54" alt="Notion" loading="lazy">
+                <img src="./assets/word.svg" width="54" height="54" alt="Word" loading="lazy">
+                <img src="./assets/excel.svg" width="54" height="54" alt="Excel" loading="lazy">
+              </div>
+              <div class="collection-column">
+                <span class="collection-heading">开发</span>
+                <img src="./assets/vscode.svg" width="54" height="54" alt="VS Code" loading="lazy">
+                <img src="./assets/github.svg" width="54" height="54" alt="GitHub Desktop" loading="lazy">
+                <img src="./assets/chrome.svg" width="54" height="54" alt="Chrome" loading="lazy">
+              </div>
+            </div>
+            <div class="feature-copy">
+              <span class="chapter-number" aria-hidden="true">02</span>
+              <h3>熟悉的应用，<br>舒服的位置。</h3>
+              <p>自动发现，按类整理。常用的固定在前，<br>不常用的藏在后。你的应用库，由你决定。</p>
+              <div class="library-details"><span>真实应用图标</span><span>自定义分类</span><span>手动排序</span></div>
+            </div>
+          </div>
+          <div class="keyboard-feature">
+            <div>
+              <span class="chapter-number" aria-hidden="true">03</span>
+              <h3>不离开键盘，<br>也不打断思路。</h3>
+            </div>
+            <div class="keyboard-visual" aria-label="Win 键唤起应用库，Alt 加 Space 唤起搜索">
+              <div class="key-group"><kbd class="physical-key win-key"><span class="windows-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span class="sr-only">Win</span></kbd><span>应用库</span></div>
+              <span class="keyboard-divider" aria-hidden="true"></span>
+              <div class="key-group"><span class="shortcut-keys"><kbd class="physical-key">Alt</kbd><span class="key-plus">+</span><kbd class="physical-key space-key">Space</kbd></span><span>聚焦搜索</span></div>
+            </div>
+            <p class="keyboard-note">方向键选中，Enter 打开。<br>也可以设成你喜欢的快捷键。</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="appearance-section section-space" id="appearance" aria-labelledby="appearance-title">
+        <div class="content-shell">
+          <div class="appearance-heading">
+            <div><p class="section-kicker">让工具，融入你的桌面。</p><h2 id="appearance-title">恰到好处的存在感。</h2></div>
+            <p>浅色或深色，通透或沉静。<br>把每一处，调成你的样子。</p>
+          </div>
+          <div class="appearance-stage" data-wallpaper="mountains">
+            <img class="appearance-wallpaper" src="./assets/mountains.jpg" width="2400" height="1590" alt="" loading="lazy">
+            <div class="material-demo native-surface" data-demo-theme="dark">
+              <div class="material-search"><img src="./assets/winspot.png" width="28" height="28" alt=""><span>搜索应用和文件…</span><span data-icon="search" aria-hidden="true"></span></div>
+              <div class="material-apps">
+                <span><img src="./assets/figma.svg" width="44" height="44" alt="">Figma</span>
+                <span><img src="./assets/notion.svg" width="44" height="44" alt="">Notion</span>
+                <span><img src="./assets/vscode.svg" width="44" height="44" alt="">VS Code</span>
+                <span><img src="./assets/spotify.svg" width="44" height="44" alt="">Spotify</span>
+                <span><img src="./assets/chrome.svg" width="44" height="44" alt="">Chrome</span>
+              </div>
+            </div>
+          </div>
+          <div class="appearance-controls">
+            <div class="theme-switch" role="group" aria-label="材质外观">
+              <button type="button" data-theme="light" aria-pressed="false"><span data-icon="sun" aria-hidden="true"></span> 浅色</button>
+              <button type="button" data-theme="dark" class="is-active" aria-pressed="true"><span data-icon="moon" aria-hidden="true"></span> 深色</button>
+            </div>
+            <div class="opacity-control"><label for="material-opacity">透明度</label><input id="material-opacity" type="range" min="20" max="85" step="1" value="55"><output for="material-opacity" id="opacity-value">55%</output></div>
+            <div class="wallpaper-options" role="group" aria-label="桌面壁纸">
+              <button class="wallpaper-swatch is-active" type="button" data-wallpaper="mountains" aria-label="雪山壁纸" title="雪山" aria-pressed="true"></button>
+              <button class="wallpaper-swatch" type="button" data-wallpaper="alpine" aria-label="山峰壁纸" title="山峰" aria-pressed="false"></button>
+            </div>
+          </div>
+          <p class="appearance-note">原生 Windows Composition 背板 · 色调、饱和度与圆角可调</p>
+        </div>
+      </section>
+
+      <section class="privacy-section section-space" id="privacy" aria-labelledby="privacy-title">
+        <div class="content-shell privacy-layout">
+          <div class="privacy-heading">
+            <span class="privacy-symbol" data-icon="shield-check" aria-hidden="true"></span>
+            <p class="section-kicker">本地优先，不止是一句承诺。</p>
+            <h2 id="privacy-title">你的电脑。<br><span>你的数据。</span></h2>
+            <p>好工具，做好自己该做的事。<br>无需把你的日常，送到别人的服务器。</p>
+          </div>
+          <dl class="privacy-list">
+            <div><dt>无需账号</dt><dd>打开就用。没有登录，也没有云同步。</dd><span data-icon="check" aria-hidden="true"></span></div>
+            <div><dt>数据不上传</dt><dd>应用索引、设置和启动记录，都留在本机。</dd><span data-icon="check" aria-hidden="true"></span></div>
+            <div><dt>不记录搜索与输入</dt><dd>搜索文本和键盘输入，不会被持久化保存。</dd><span data-icon="check" aria-hidden="true"></span></div>
+          </dl>
+        </div>
+      </section>
+
+      <section class="faq-section section-space" id="faq" aria-labelledby="faq-title">
+        <div class="content-shell faq-layout">
+          <div><p class="section-kicker">再了解一点。</p><h2 id="faq-title">你可能<br>想知道。</h2><a class="text-link" href="https://github.com/Mystic-Stars/WinSpot/issues" target="_blank" rel="noopener noreferrer">还有问题？在 GitHub 聊聊 <span data-icon="arrow-up-right" aria-hidden="true"></span></a></div>
+          <div class="faq-list">
+            <details><summary>WinSpot 支持哪些系统？<span data-icon="plus" aria-hidden="true"></span></summary><p>目前面向 Windows 11 22H2 及以上的 x64 设备，需要 Microsoft Edge WebView2 Runtime。暂不保证 Windows 10、ARM64 或其他操作系统的支持。</p></details>
+            <details><summary>接管 Win 键后，还能用系统组合键吗？<span data-icon="plus" aria-hidden="true"></span></summary><p>WinSpot 只在启用相应设置后处理单独的 Win 键，不接管 Win+E、Win+D 等系统组合键。Ctrl+Esc 仍可打开 Windows 开始菜单；遇到冲突时，可在托盘中临时暂停键盘接管。</p></details>
+            <details><summary>文件搜索需要 Everything 吗？<span data-icon="plus" aria-hidden="true"></span></summary><p>不是必需。WinSpot 优先使用可用的 Everything；没有 Everything 时，会在设置中的本地目录搜索。搜索范围和速度取决于目录设置，不会建立全盘持久化文件索引。</p></details>
+            <details><summary>可以改分类、名称和快捷键吗？<span data-icon="plus" aria-hidden="true"></span></summary><p>可以。你可以整理应用名称、别名、分类、固定状态、可见性和排序，也可以自定义唤起快捷键。设置与应用整理支持配置导入和导出。</p></details>
+            <details><summary>在哪里获取和安装？<span data-icon="plus" aria-hidden="true"></span></summary><p>项目当前提供源码，可按仓库 README 的说明运行或打包。已发布的文件以 GitHub 发布页为准。项目文档说明安装包目前未配置代码签名，安装时 Windows 可能提示未知发布者。</p><a class="text-link" href="https://github.com/Mystic-Stars/WinSpot#安装与开发" target="_blank" rel="noopener noreferrer">查看安装与开发说明 <span data-icon="arrow-up-right" aria-hidden="true"></span></a></details>
+          </div>
+        </div>
+      </section>
+
+      <section class="get-section" id="get" aria-labelledby="get-title">
+        <div class="content-shell get-layout">
+          <img class="get-logo" src="./assets/winspot.png" width="88" height="88" alt="" loading="lazy">
+          <div class="get-copy"><p class="section-kicker">从一个更顺手的入口开始。</p><h2 id="get-title">让桌面，回归简单。</h2><p>Windows 11 22H2+ · x64 · WebView2</p></div>
+          <div class="get-actions">
+            <a class="button button-dark" href="https://github.com/Mystic-Stars/WinSpot" target="_blank" rel="noopener noreferrer"><span data-icon="github" aria-hidden="true"></span> 获取项目源码 <span data-icon="arrow-up-right" aria-hidden="true"></span></a>
+            <a class="text-link" href="https://github.com/Mystic-Stars/WinSpot/releases" target="_blank" rel="noopener noreferrer">查看发布页 <span data-icon="arrow-up-right" aria-hidden="true"></span></a>
+            <p>当前提供源码，安装方式见项目文档。</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="content-shell footer-content">
+        <a class="brand" href="#top"><img src="./assets/winspot.png" width="26" height="26" alt=""><span>WinSpot</span></a>
+        <span class="footer-tagline">为日常留白，为专注让路。</span>
+        <div class="footer-links"><a href="https://github.com/Mystic-Stars/WinSpot" target="_blank" rel="noopener noreferrer">GitHub</a><a href="https://github.com/Mystic-Stars/WinSpot#readme" target="_blank" rel="noopener noreferrer">项目文档</a><a href="#privacy">隐私</a></div>
+      </div>
+    </footer>
+  </body>
+</html>

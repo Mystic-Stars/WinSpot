@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "project": "WinSpot 官网",
+  "brief": "面向 Windows 11 用户的本地启动器官网。首屏辨认产品、看见应用展示，并找到可信的源码获取入口。",
+  "round": "01",
+  "candidates": [
+    {
+      "id": "quiet-desktop",
+      "name": "山间桌面",
+      "concept": "让启动器直接长在真实桌面上；安静的山景与清晰的应用图标表达专注和本地使用。",
+      "typography": "Segoe UI Display 86px 英文字标，28px 中文主张，15px 正文；系统中文字体回退。",
+      "palette": ["#ffffff", "#222831", "#3468dc", "#bd596c"],
+      "traits": ["满版真实壁纸", "居中的玻璃应用库", "黑白编辑排版", "完整官网采用此推荐初稿方向"],
+      "kind": "html",
+      "source": "design/quiet-desktop.html"
+    },
+    {
+      "id": "keyboard-poster",
+      "name": "键盘宣言",
+      "concept": "把键盘动作变成产品发布海报；用极大的品牌字和实体键帽强调更直接的桌面入口。",
+      "typography": "Arial 140px 重字标，49px 中文标题，15px 正文；字标与中文有明确尺度反差。",
+      "palette": ["#fafafa", "#202122", "#eaebed", "#c44289"],
+      "traits": ["满版文字首屏", "原有彩色标志跨越版面", "实体快捷键主视觉", "黑白海报式版面"],
+      "kind": "html",
+      "source": "design/keyboard-poster.html"
+    }
+  ]
+}

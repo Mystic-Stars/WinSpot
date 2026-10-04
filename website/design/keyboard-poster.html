@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WinSpot · 键盘宣言</title>
+  <style>
+    * { box-sizing: border-box; letter-spacing: 0; }
+    body { margin: 0; font-family: "Segoe UI", "Microsoft YaHei", sans-serif; color: #202122; background: #fafafa; }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    header { height: 76px; padding: 0 6%; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #d9dadd; }
+    .brand { display: flex; gap: 10px; align-items: center; font-weight: 650; font-size: 22px; }
+    .top-link { font-size: 13px; padding-bottom: 4px; border-bottom: 1px solid #202122; }
+    main { padding: 40px 6% 58px; position: relative; isolation: isolate; }
+    .eyebrow { font-size: 13px; margin: 0 0 18px; }
+    h1 { font-family: Arial, "Segoe UI", sans-serif; font-size: 140px; line-height: 1.05; margin: 0; font-weight: 800; }
+    .main-mark { position: absolute; width: 470px; height: 470px; right: 7%; top: 160px; z-index: -1; object-fit: contain; transform: rotate(-12deg); }
+    .headline { font-size: 49px; line-height: 1.4; font-weight: 550; margin: 37px 0 26px; max-width: 800px; }
+    .action { display: inline-block; border: 1px solid #202122; padding: 14px 23px; font-size: 14px; border-radius: 3px; background: #fafafa; }
+    .shortcut { display: flex; gap: 15px; align-items: center; margin-top: 68px; }
+    kbd { display: flex; align-items: center; justify-content: center; height: 72px; width: 85px; border: 1px solid #bec0c4; border-bottom: 5px solid #bec0c4; background: #fff; border-radius: 7px; font: 22px "Segoe UI", sans-serif; box-shadow: 0 6px 0 #eee; }
+    kbd:last-child { width: 160px; }
+    .shortcut > span { font-size: 16px; color: #92959b; }
+    .description { font-size: 15px; color: #767a82; line-height: 1.9; margin: 30px 0 0; }
+    footer { background: #eaebed; padding: 28px 6%; display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; }
+    footer strong { font-size: 22px; font-weight: 550; }
+    footer p { font-size: 13px; color: #767a82; margin-bottom: 0; }
+    @media (max-width: 600px) { header { height: 64px; } .brand { font-size: 20px; } main { padding: 35px 6% 45px; } h1 { font-size: 68px; } .headline { font-size: 31px; margin-top: 25px; } .main-mark { width: 210px; height: 210px; top: 240px; right: 0; opacity: 0.8; } .shortcut { margin-top: 55px; } kbd { width: 57px; height: 59px; font-size: 17px; } kbd:last-child { width: 104px; } .description { font-size: 13px; max-width: 250px; } footer { grid-template-columns: 1fr; gap: 22px; } footer strong { font-size: 20px; } }
+  </style>
+</head>
+<body>
+  <header><a class="brand" href="#top"><img src="../assets/winspot.png" width="32" height="32" alt="">WinSpot</a><a class="top-link" href="#next">获取源码</a></header>
+  <main id="top">
+    <p class="eyebrow">Windows，本该更顺手。</p>
+    <h1>WinSpot</h1>
+    <img class="main-mark" src="../assets/winspot.png" width="470" height="470" alt="">
+    <p class="headline">把下一步，<br>交给一个键。</p>
+    <a class="action" href="#next">获取 WinSpot</a>
+    <div class="shortcut"><kbd>Alt</kbd><span>+</span><kbd>Space</kbd></div>
+    <p class="description">应用、文件、日常。<br>把寻找的时间，还给真正想做的事。</p>
+  </main>
+  <footer id="next"><div><strong>想到就找到</strong><p>中文、拼音、首字母，都是入口。</p></div><div><strong>应用各就各位</strong><p>自动发现，自由整理。</p></div><div><strong>数据不出电脑</strong><p>没有账号，不上传数据。</p></div></footer>
+</body>
+</html>
