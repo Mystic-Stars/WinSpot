@@ -1,0 +1,66 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "WinSpot",
+  "version": "0.1.0",
+  "identifier": "app.winspot.desktop",
+  "build": {
+    "beforeDevCommand": "pnpm dev",
+    "devUrl": "http://127.0.0.1:1420",
+    "beforeBuildCommand": "pnpm build",
+    "frontendDist": "../dist"
+  },
+  "app": {
+    "windows": [
+      {
+        "label": "main",
+        "create": false,
+        "title": "WinSpot",
+        "width": 1120,
+        "height": 760,
+        "minWidth": 500,
+        "minHeight": 100,
+        "visible": false,
+        "transparent": true,
+        "decorations": false,
+        "shadow": false,
+        "resizable": false,
+        "maximizable": false,
+        "minimizable": false,
+        "alwaysOnTop": true,
+        "skipTaskbar": true,
+        "backgroundColor": "#00000000"
+      }
+    ],
+    "security": {
+      "csp": "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' asset: http://asset.localhost data:; connect-src ipc: http://ipc.localhost; font-src 'self'; object-src 'none'; base-uri 'self'; frame-src 'none'",
+      "assetProtocol": {
+        "enable": true,
+        "scope": ["$APPLOCALDATA/icons/**"]
+      },
+      "capabilities": ["desktop", "settings"]
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": ["nsis"],
+    "resources": ["../docs/THIRD_PARTY_NOTICES.md"],
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.icns",
+      "icons/icon.ico"
+    ],
+    "shortDescription": "WinSpot",
+    "category": "Productivity",
+    "windows": {
+      "webviewInstallMode": { "type": "downloadBootstrapper", "silent": true },
+      "nsis": {
+        "installMode": "currentUser",
+        "languages": ["SimpChinese", "English"],
+        "displayLanguageSelector": false,
+        "installerHooks": "installer-hooks.nsh"
+      }
+    }
+  }
+}

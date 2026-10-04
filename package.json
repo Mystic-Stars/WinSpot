@@ -1,0 +1,27 @@
+{
+  "name": "winspot",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "tsc --noEmit && vite build",
+    "check": "tsc --noEmit",
+    "tauri": "tauri",
+    "desktop": "tauri dev",
+    "package": "tauri build --bundles nsis"
+  },
+  "dependencies": {
+    "@iconify-icons/vscode-icons": "2.0.11",
+    "@tauri-apps/api": "^2.10.1",
+    "@tauri-apps/plugin-dialog": "^2.7.1",
+    "lucide-solid": "^0.468.0",
+    "solid-js": "^1.9.15"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^2.12.1",
+    "typescript": "^5.9.3",
+    "vite": "^7.3.1",
+    "vite-plugin-solid": "^2.11.10"
+  }
+}
