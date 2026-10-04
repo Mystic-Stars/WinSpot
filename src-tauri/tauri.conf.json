@@ -42,6 +42,7 @@
   },
   "bundle": {
     "active": true,
+    "createUpdaterArtifacts": true,
     "targets": ["nsis"],
     "resources": ["../docs/THIRD_PARTY_NOTICES.md"],
     "icon": [
@@ -61,6 +62,14 @@
         "displayLanguageSelector": false,
         "installerHooks": "installer-hooks.nsh"
       }
+    }
+  },
+  "plugins": {
+    "updater": {
+      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IEI2NEVBODczMzk2NkM2MjUKUldRbHhtWTVjNmhPdG95UTdnUGV5OTh3R0NoT1BXdWU5QW5BSFZqejI0aTJjS0hwR3k3eTA0SzkK",
+      "endpoints": [
+        "https://github.com/Mystic-Stars/WinSpot/releases/latest/download/latest.json"
+      ]
     }
   }
 }

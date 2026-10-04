@@ -27,6 +27,7 @@ export default function App() {
   const [systemReduced, setSystemReduced] = createSignal(matchMedia("(prefers-reduced-motion: reduce)").matches);
   const cleanups: (() => void)[] = [];
   let messageTimer: ReturnType<typeof setTimeout>;
+  let updateTimer: ReturnType<typeof setTimeout> | undefined;
   let disposed = false;
   const report = (error: unknown) => {
     setMessage(errorText(error));
@@ -127,11 +128,17 @@ export default function App() {
     if (data?.startHidden && !settingsWindow) setVisible(false);
     if (data?.startupErrors?.length) report(data.startupErrors.join("；"));
     if (desktop && !settingsWindow && !data?.startHidden) await api.show("apps").catch(report);
+    if (desktop && !settingsWindow) {
+      updateTimer = setTimeout(() => {
+        void api.installUpdate().catch(error => console.warn("WinSpot update check failed", error));
+      }, 5000);
+    }
   });
   onCleanup(() => {
     disposed = true;
     cleanups.forEach(fn => fn());
     clearTimeout(messageTimer);
+    if (updateTimer) clearTimeout(updateTimer);
   });
   return <>
     <Show when={settingsWindow} fallback={

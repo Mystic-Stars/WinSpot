@@ -1,6 +1,8 @@
 import { convertFileSrc, invoke, isTauri } from "@tauri-apps/api/core";
 import { listen } from "@tauri-apps/api/event";
 import { open } from "@tauri-apps/plugin-dialog";
+import { relaunch } from "@tauri-apps/plugin-process";
+import { check } from "@tauri-apps/plugin-updater";
 import { defaults, emptyScan, type AppOverride, type Application, type Bootstrap, type FilePreview, type MaterialAppearance, type MaterialScene, type Mode, type SearchResponse, type Settings } from "./types";
 
 export const desktop = isTauri();
@@ -96,6 +98,14 @@ export const api = {
   },
   pause: (paused: boolean) => desktop ? invoke<void>("set_capture_paused", { paused }) : Promise.resolve(),
   recording: (recording: boolean) => desktop ? invoke<void>("set_shortcut_recording", { recording }) : Promise.resolve(),
+  installUpdate: async () => {
+    if (!desktop) return false;
+    const update = await check();
+    if (!update) return false;
+    await update.downloadAndInstall();
+    await relaunch();
+    return true;
+  },
 };
 
 export async function subscribe<T>(event: string, fn: (value: T) => void) {
